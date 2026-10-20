@@ -1,0 +1,18 @@
+# Netlify: statische Seite aus dist/, Tests laufen vor jedem Build.
+[build]
+  command = "npm run check"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Einzelseiten-App: alle Pfade auf index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
